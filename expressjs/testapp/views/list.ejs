@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+
+      var datas ='<%- datas %>'; //json 형식일 때는 "="이 아닌 "-" 사용해야함.
+
+      console.log(datas);
+      console.log(JSON.parse(datas));
+
+      var dataArr = JSON.parse(datas);
+
+      window.onload = function (){
+
+        console.log("onload....");
+
+        var listTable = document.getElementById('listTable');
+        var str = ""
+
+          for (var i = 0; i < dataArr.length; i++) {
+            // str += "<tr><td>"+dataArr[i].id+"</td><td>"+dataArr[i].pw+"</td></tr>";
+            // 위, 아래 소스는 기능은 동일하나 보기 쉽게 아래와 같이 표현 가능
+            str += "<tr>";
+            str += "<td>";
+            str += "<a href='update?_id="+dataArr[i]._id+"'>";
+            str += dataArr[i]._id;
+            str += "</a>";
+            str += "</td>";
+            str += "<td>";
+            str += dataArr[i].id;
+            str += "</td>";
+            str += "<td>";
+            str += dataArr[i].pw;
+            str += "</td>";
+            str += "<td>";
+            str += "<a href='deleteOK?_id="+dataArr[i]._id+"'>";
+            str += "삭제";
+            str += "</a>";
+            str += "</td>";
+            str += "</tr>";
+          }
+
+        listTable.innerHTML = str;
+
+      };
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= datas %></p>>
+    <a href="/">Home</a>
+    <a href="test">Test</a>
+    <hr>
+    <table border = "1">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>ID</th>
+          <th>PW</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="listTable">
+      </tbody>
+    </table>
+  </body>
+</html>

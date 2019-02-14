@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+
+      console.log(JSON.parse('<%-vo%>'));
+
+      window.onload = function(){
+
+        document.getElementById('_id').innerTEXT = JSON.parse('<%-vo%>')._id;
+        document.getElementById('_id').value = JSON.parse('<%-vo%>')._id;
+        document.getElementById('id').value = JSON.parse('<%-vo%>').id;
+        document.getElementById('pw').value = JSON.parse('<%-vo%>').pw;
+
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= vo %></p>
+    <a href="/">Home</a>
+    <a href="list">List</a>
+    <a href="test">Test</a>
+    <hr>
+    <form action="updateOK" method="post">
+      <label>_ID :</label><span id="s_id"></span><input type="text" id="_id" name="_id" value=""><br>
+      <label>ID :</label><input type="text" id="id" name="id" value=""><br>
+      <label>PW :</label><input type="text" id="pw" name="pw" value=""><br>
+      <input type="submit" value="전송"></input>
+    </form>
+  </body>
+</html>
